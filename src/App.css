@@ -1,0 +1,55 @@
+/* 全体のレイアウト設定 */
+body {
+  display: flex; /* Flexboxを使用 */
+  flex-direction: column; /* 子要素を縦方向に並べる */
+  align-items: center; /* 子要素を中央揃えにする */
+  justify-content: center; /* 子要素を中央揃えにする */
+}
+
+/* 計算機本体のスタイル */
+.calculator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 計算結果表示部分のスタイル */
+.display {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f2f2f2;
+  width: calc(100% - 50px); /* 「M」のdivの幅とマージンを差し引く */
+  text-align: right;
+  min-height: 24px;
+}
+
+/* 計算結果表示部分とメモリインジケータのコンテナ */
+.display-container {
+  display: flex; /* Flexboxを使用して子要素を横に並べる */
+  width: 100%; /* 親要素の幅に合わせる */
+  align-items: center; /* 子要素を中央揃えにする */
+}
+
+/* メモリインジケータのスタイル */
+.memory {
+  width: 20px; /* 「M」のdivのための幅を確保 */
+  height: 32px; /* 高さを設定、必要に応じて調整 */
+  margin-right: 10px; /* ディスプレイとの間隔 */
+  text-align: center; /* 「M」を中央揃えにする */
+  min-height: 22px;
+  font-weight: bold;
+}
+
+/* ボタンのグリッドレイアウト */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+/* ボタンのスタイル */
+button {
+  padding: 20px;
+  font-size: 16px;
+}
