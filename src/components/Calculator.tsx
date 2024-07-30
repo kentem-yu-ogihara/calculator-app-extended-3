@@ -63,28 +63,39 @@ const Calculator: React.FC = () => {
     }
   };
 
-  const calculateTaxIncluded = () => {
-    try {
-      const evaluatedResult = evaluate(result);
-      const taxIncluded = Math.round(evaluatedResult * 1.1); // 10%の消費税を追加
-      setResult(taxIncluded.toString());
-      setIsResultShown(true);
-    } catch (error) {
-      setResult("Error");
-    }
-  };
+// 税込金額を計算して四捨五入する関数
+const calculateTaxIncludedAmount = (amount: number): number => {
+  return Math.round(amount * 1.1);
+};
 
-  const calculateTaxExcluded = () => {
-    try {
-      const evaluatedResult = evaluate(result);
-      const taxExcluded = Math.ceil(evaluatedResult / 1.1); // 10%の消費税を除外
-      setResult(taxExcluded.toString());
-      setIsResultShown(true);
-    } catch (error) {
-      setResult("Error");
-    }
-  };
+// 税抜金額を計算して整数に切り上げる関数
+const calculateTaxExcludedAmount = (amount: number): number => {
+  return Math.ceil(amount / 1.1);
+};
 
+// 税込金額を計算する関数
+const calculateTaxIncluded = () => {
+  try {
+    const evaluatedResult = evaluate(result);
+    const taxIncluded = calculateTaxIncludedAmount(evaluatedResult);
+    setResult(taxIncluded.toString());
+    setIsResultShown(true);
+  } catch (error) {
+    setResult("Error");
+  }
+};
+
+// 税抜金額を計算する関数
+const calculateTaxExcluded = () => {
+  try {
+    const evaluatedResult = evaluate(result);
+    const taxExcluded = calculateTaxExcludedAmount(evaluatedResult);
+    setResult(taxExcluded.toString());
+    setIsResultShown(true);
+  } catch (error) {
+    setResult("Error");
+  }
+};
   const reset = () => {
     setResult("");
     setIsResultShown(false);
