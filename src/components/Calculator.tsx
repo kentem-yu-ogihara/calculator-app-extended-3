@@ -8,6 +8,7 @@ const Calculator: React.FC = () => {
   const [memory, setMemory] = useState(0);
   const [isResultShown, setIsResultShown] = useState(false);
   const [isMemorySet, setIsMemorySet] = useState(false);
+  const [taxRate, setTaxRate] = useState(1.1); // 初期値は10%
 
   const handleClick = (button: string) => {
     if (isResultShown && button !== "=") {
@@ -65,12 +66,12 @@ const Calculator: React.FC = () => {
 
 // 税込金額を計算して四捨五入する関数
 const calculateTaxIncludedAmount = (amount: number): number => {
-  return Math.round(amount * 1.1);
+  return Math.round(amount * taxRate);
 };
 
 // 税抜金額を計算して整数に切り上げる関数
 const calculateTaxExcludedAmount = (amount: number): number => {
-  return Math.ceil(amount / 1.1);
+  return Math.ceil(amount / taxRate);
 };
 
 // 税込金額を計算する関数
@@ -134,6 +135,39 @@ const calculateTaxExcluded = () => {
     <div>
       <CalculatorDisplay isMemorySet={isMemorySet} result={result} />
       <CalculatorButtons handleClick={handleClick} />
+      <div className="tax-rate-group">
+        <span className="title">税率を選択:</span>
+        <label className="label">
+          <input
+            type="radio"
+            name="taxRate"
+            value="1.1"
+            checked={taxRate === 1.1}
+            onChange={(e) => setTaxRate(Number(e.target.value))}
+          />
+          10%
+        </label>
+        <label className="label">
+          <input
+            type="radio"
+            name="taxRate"
+            value="1.08"
+            checked={taxRate === 1.08}
+            onChange={(e) => setTaxRate(Number(e.target.value))}
+          />
+          8%
+        </label>
+        <label className="label">
+          <input
+            type="radio"
+            name="taxRate"
+            value="1.05"
+            checked={taxRate === 1.05}
+            onChange={(e) => setTaxRate(Number(e.target.value))}
+          />
+          5%
+        </label>
+      </div>
     </div>
   );
 };

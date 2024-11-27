@@ -84,3 +84,16 @@ button.double-width {
   border-radius: 5px;
   width: 184px;
 }
+
+.tax-rate-group {
+  display: flex;
+  padding: 8px;
+  align-items: center;
+
+  > .title {
+    color: var(--text-color);
+  }
+  > .label {
+    color: var(--text-color);
+  }
+}
